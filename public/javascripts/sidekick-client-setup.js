@@ -75,16 +75,22 @@ sidekick.store.set("help", {
 });
 
 // idm
-sidekick.store.set('roles', {
-  currentRole: 1,
-  roles: [
-    { id: 1, name: 'Teacher' },
-    { id: 2, name: 'Admin' }
-  ]
-});
+var roleData = {
+    currentRole: 1,
+    roles: [
+      { id: 1, name: 'Teacher' },
+      { id: 2, name: 'Admin' }
+    ]
+};
+
+sidekick.store.set('roles', roleData);
 
 sidekick.events.on("header.user-info.role", function(role) {
-  console.log(role.name, 'was clicked');
+    roleData.currentRole = role.id;
+    sidekick.store.set('roles', roleData);
+    alert(`Hello ${role.name}`);
+
+    console.log(role.name, 'was clicked');
 });
 sidekick.events.on("header.user-info.account-settings", function() {
   console.log('settings');
@@ -95,9 +101,14 @@ sidekick.events.on("session.logout", function() { // event name differs from doc
 });
 
 // session timeout
-sidekick.store.set('session-timeout', {
-  timer: 30
-});
+
+setInterval(() => {
+    sidekick.store.set('session-timeout', {
+        timer: 30
+      });
+    
+}, 30000);
+
 
 sidekick.events.on("session.logout", function() {
   console.log('logout was clicked');
@@ -180,34 +191,47 @@ lastName: "Developer",
 
 
 
-sidekick.store.set('org-switcher-data', {
-currentOrg: '1234',
-orgs: [{
-  id: '1234',
-  name: 'Test Org 1'
-}, {
-  id: '2354',
-  name: 'Test Org 2'
-}]
-});
+// Org Switcher
+var orgSwitcherData = {
+    currentOrg: '1234',
+    orgs: [{
+      id: '1234',
+      name: 'Test Org 1'
+    }, {
+      id: '2354',
+      name: 'Test Org 2'
+    }]
+};
+
+sidekick.store.set('org-switcher-data', orgSwitcherData);
 
 sidekick.events.on("header.org-switcher.change", (o) => {
-console.log(`OrgSwitcher: ${JSON.stringify(o)}`);
+    console.log(`OrgSwitcher: ${JSON.stringify(o)}`);
+
+    orgSwitcherData.currentOrg = o.id;
+    sidekick.store.set('org-switcher-data', orgSwitcherData);
+    alert(`Welcome to org ${o.name}`);
 });
 
-sidekick.store.set('app-switcher-data', {
-currentApp: 'APPID1',
-apps: [{
-  id: 'APPID1',
-  name: 'Application 1',
-  //url: 'http://somewhere.com/dashboard/'
-}, {
-  id: 'APPID2',
-  name: 'Application 2',
-  //url: 'http://somewhereelse.com/dashboard/'
-}]
-});
+// App switcher
+var appSwitcherData = {
+    currentApp: 'APPID1',
+    apps: [{
+      id: 'APPID1',
+      name: 'Application 1',
+      //url: 'http://somewhere.com/dashboard/'
+    }, {
+      id: 'APPID2',
+      name: 'Application 2',
+      //url: 'http://somewhereelse.com/dashboard/'
+    }]
+};
+
+sidekick.store.set('app-switcher-data', appSwitcherData);
 
 sidekick.events.on("header.app-switcher.change", (a) => {
-console.log(`OrgSwitcher: ${JSON.stringify(a)}`);
+    console.log(`OrgSwitcher: ${JSON.stringify(a)}`);
+    appSwitcherData.currentApp = a.id;
+    sidekick.store.set('app-switcher-data', appSwitcherData);
+    alert(`Welcome to app ${a.name}`);
 });
