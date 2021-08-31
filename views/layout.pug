@@ -132,12 +132,12 @@ html
 
         sidekick.store.set('search', {
           limit: 10,
-          placeHolderText: 'Search Sidekick App'
+          placeHolderText: 'Search Nobel Prizes, try `p`'
         });
 
         sidekick.events.on('header.search', (searchTerm) => {
 
-          searchResult = noble.prizes.filter(p => p.year == searchTerm || p.category == searchTerm);
+          searchResult = noble.prizes.filter(p => p.year == searchTerm || p.category.startsWith(searchTerm));
 
           var resultHtml = searchResult.map(r => `${r.year} - ${r.category}`);
 
