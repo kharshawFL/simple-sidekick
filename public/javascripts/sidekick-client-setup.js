@@ -112,7 +112,7 @@ setInterval(() => {
 
 sidekick.events.on("session.logout", function() {
   console.log('logout was clicked');
-  event.emit("session-timeout.clear");
+  sidekick.events.emit("session-timeout.clear");
 });
 
 sidekick.events.on("session.extend", function() {
