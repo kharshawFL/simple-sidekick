@@ -123,7 +123,7 @@ html
         });
         
         
-        //sidekick.events.emit("session-timeout.clear");
+        sidekick.events.emit("session-timeout.clear");
 
 
         // sidekick search
@@ -171,4 +171,44 @@ html
             alert('chat!')
           }
         });
-    block scripts
+
+        sidekick.store.set("user-data", {
+        firstName: "Joe",
+        lastName: "Developer",
+        // showAcctSettings: true,  // defaults to true
+        // showSignOut: true	// defaults to true
+      });
+
+      
+
+      sidekick.store.set('org-switcher-data', {
+        currentOrg: '1234',
+        orgs: [{
+          id: '1234',
+          name: 'Test Org 1'
+        }, {
+          id: '2354',
+          name: 'Test Org 2'
+        }]
+      });
+
+      sidekick.events.on("header.org-switcher.change", (o) => {
+        console.log(`OrgSwitcher: ${JSON.stringify(o)}`);
+      });
+
+      sidekick.store.set('app-switcher-data', {
+        currentApp: 'APPID1',
+        apps: [{
+          id: 'APPID1',
+          name: 'Application 1',
+          //url: 'http://somewhere.com/dashboard/'
+        }, {
+          id: 'APPID2',
+          name: 'Application 2',
+          //url: 'http://somewhereelse.com/dashboard/'
+        }]
+      });
+
+      sidekick.events.on("header.app-switcher.change", (a) => {
+        console.log(`OrgSwitcher: ${JSON.stringify(a)}`);
+      });
