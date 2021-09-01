@@ -78,7 +78,7 @@ sidekick.store.set("help", {
   }]
 });
 
-// idm
+// user profile stuff
 var roleData = {
     currentRole: 1,
     roles: [
