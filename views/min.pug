@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet',href='https://sidekick.uitools.frontlineeducation.com/sidekick.css',media='screen',charset='utf-8')    
+  body
+    block header
+    block content
+      h1 Progressive Sidekick :)
+      p
+      button.sidekick.sk-button(onclick='toggleOrgSwitcher()', id='btnOrg') Show Org Switcher
+      p
+      button.sidekick.sk-button(onclick='toggleAppSwitcher()', id='btnApp') Show App Switcher
+      p
+      button.sidekick.sk-button(onclick='toggleMenu()', id='btnMenu') Show Menu
+    block footer
+    block main-scripts
+        script(src='https://sidekick.uitools.frontlineeducation.com/sidekick.js')
+        script. 
+            sidekick.init({})  
+    block page-scripts
+        script(src='javascripts/sidekick-client-min.js')
+    

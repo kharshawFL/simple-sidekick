@@ -29,6 +29,9 @@ app.use('/help', helpRouter);
 app.use('/feedback', feedbackRouter);
 app.use('/notification', notificationRouter);
 app.use('/laureates', laureatesRouter);
+app.use('/min', (_req, res, _next) => {
+  res.render('min', { title: 'Minimal Sidekick' })
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

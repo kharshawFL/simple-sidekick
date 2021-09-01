@@ -7,41 +7,45 @@ sidekick.store.set('activity-indicator', {});
 // set up the left nav
 sidekick.store.set('nav', {
   'menuItems': [{
-      'title': 'Home',
-      'url': '/',
-      'icon': 'fa-nav-gem',
-      'badgeEvent': 'gem-count'
-    }, {
-      'title': 'Item 2 /w Menu',
+    'title': 'Home',
+    'url': '/',
+    'icon': 'fa-nav-gem',
+    'badgeEvent': 'gem-count'
+  }, {
+      'title': 'Nested Menu',
       'icon': 'fa-nav-chart-bar',
       'children': [
-          { 'title': 'Sub 1',
-            'children': [
-              {'title':" Item 2 Sub 1 Child 1"},
-              {'title':" Item 2 Sub 1 Child 2"},
-            ]},
-          { 'title': 'Sub 2' }
+          { 'title': 'Child 1',
+          'children': [
+              {'title':" Grandchild 1"},
+              {'title':" Grandchild 2"},
+          ]},
+          { 'title': 'Child 2' }
       ]
-    }, {
-      'title': 'Item 3 /w Menu',
+  }, {
+      'title': 'Super Menu',
       'icon': 'fa-nav-search',
       'children': [{
-          'title': 'Sub 1',
+          'title': 'Child 1',
           'children': [
-              { 'title': 'Sub Sub 1' },
-              { 'title': 'Sub Sub 2' }
+              { 'title': 'Grandchild 1' },
+              { 'title': 'Grandchild 2' }
           ]
       }, {
-          'title': 'Sub 2',
+          'title': 'Child 2',
           'children': [
-              { 'title': 'Sub Sub 1' },
-              { 'title': 'Sub Sub 2' }
+              { 'title': 'Grandchild 3' },
+              { 'title': 'Grandchild 4' }
           ]
       }]
   }, {
-    'title': 'Notification',
-    'url': '/notification',
-    'icon': 'fa-li-window-alert'
+  'title': 'Notification',
+  'url': '/notification',
+  'icon': 'fa-li-window-alert'
+  }, {
+    'title': 'Minimal Page',
+    'url': '/min',
+    'icon': 'fa-nav-tachometer'
   }]
 });
 
@@ -51,7 +55,7 @@ sidekick.store.set('current-org', {
   phone: '(717) 555-1212',
   fax: '(717) 555-1213',
   contactName: 'Keith Harshaw',
-  comments: 'Just some test orrg'
+  comments: 'Just some test org'
 });
 
 sidekick.store.set("help", {
@@ -102,12 +106,12 @@ sidekick.events.on("session.logout", function() { // event name differs from doc
 
 // session timeout
 
-setInterval(() => {
-    sidekick.store.set('session-timeout', {
-        timer: 30
-      });
+// setInterval(() => {
+//     sidekick.store.set('session-timeout', {
+//         timer: 30
+//       });
     
-}, 30000);
+// }, 30000);
 
 
 sidekick.events.on("session.logout", function() {
