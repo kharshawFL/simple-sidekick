@@ -98,3 +98,36 @@ function toggleMenu() {
     // set up the left nav
     sidekick.store.set('nav', menuData);
 }
+
+function toggleHelp() {
+    
+    sidekick.store.set("help", {
+        "articles": [{
+        "title": "Help Me!",
+        "url": "/help",
+        "icon": "fa-file-text"
+        },{
+        "title": "Look in Console",
+        "icon": "fa-nav-bolt"
+        }],
+        "blocks": [{
+        "title": "feedback",
+        "url": "/feedback",
+        "icon": "fa-li-lightbulb"
+        }, {
+        "id": "livechat",
+        "title": "live chat",
+        "icon": "fa-li-chatbubbles"
+        }]
+    });
+
+    sidekick.events.on("header.help.article.click", function(a) {
+        console.log(a.title + " was clicked.");
+      });
+      sidekick.events.on("header.help.block.click", function(b) {
+        console.log(b.title + " was clicked.");
+        if (b.id === 'livechat') {
+          alert('chat!')
+        }
+      });
+}
